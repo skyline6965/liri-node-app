@@ -3,36 +3,30 @@
 require("dotenv").config();
 var Spotify = require("node-spotify-api");
 var keys = require("./keys.js");
-var artist = process.argv[2].trim();
 var fs = require("fs");
 var axios = require("axios");
-
 var spotify = new Spotify(keys.spotify);
 
 
+var userInput = process.argv.slice(3).join("%");
+var bandURL = "https://rest.bandsintown.com/artists/" + userInput + "/events?app_id=codingbootcamp";
 
 
-var queryURL = "https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp";
-
-
-
-
-
-
-// function spotifyThisSong();
-// function movieThis();
-// function doWhatItSays();
-
-
-
-function searchApi(queryURL){
-    switch (queryURL) {
-        case 'concert-this':
-            axios.get('https://rest.bandsintown.com/artists/' + artist.slice(3).join("%"))
+function searchApi(query) {
+    switch(query){
+        case 'concert-this':            
+            axios.get(bandURL)
                 .then(function (response) {
-                    var concertData = response.data[0].venue.name;
-                    console.log(concertData);
+                    console.log(bandURL);
                 })
+            break;
+        case 'spotify-this-song':
+            axios.get('https://api.spotify.com/v1/search/q=' + userInput +  )
+
+            break;
+        default:
+            console.log('test')
+            
             break;
     };
 };
