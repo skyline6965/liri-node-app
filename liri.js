@@ -28,10 +28,12 @@ function searchApi() {
         case 'concert-this':
             axios.get(bandURL).then(function (response) {
 
-                console.log(bandURL);
-                console.log(response.data[0].venue.name);
-                console.log(response.data[0].venue.city);
-                console.log(moment(response.data[0].datetime).format('MM/DD/YYYY'));
+                // console.log(bandURL);
+                console.log('----------------------------------------------------------------');
+                console.log("Venue Name: " + response.data[0].venue.name);
+                console.log("City of Venue: " + response.data[0].venue.city);
+                console.log("Date: " + moment(response.data[0].datetime).format('MM/DD/YYYY'));
+                console.log('----------------------------------------------------------------');
 
             })
                 .catch(function (err) {
@@ -92,6 +94,7 @@ function searchApi() {
                 }
                 // console.log(data);
             });
+        
 
             break;
 
